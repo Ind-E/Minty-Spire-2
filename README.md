@@ -5,7 +5,7 @@ Successor of the StS1 mod with the same name. This is a compilation of small qua
 - Heal preview above the rest button at rest sites
 - Shows summed incoming damage next to your hp bar
 - Sums damage from multi attack intents
-- Make toches clickable to extiguish and light them (cany0udance)
+- Make torches clickable to extiguish and light them (cany0udance)
 - Show ascenscion effects when hovering the character portrait in the top bar (kiooeht)
 - Increase animation speed of shuffling discard into draw pile (pandemonium)
 
