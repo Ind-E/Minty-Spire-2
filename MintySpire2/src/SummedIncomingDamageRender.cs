@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Collections.Generic;
+using System.Reflection;
 using Godot;
 using HarmonyLib;
 using MegaCrit.Sts2.Core.Combat;
@@ -139,7 +140,7 @@ public static class SummedIncomingDamageRender
 
         // Only show for the player-owned health bar.
         var creature = CreatureField?.GetValue(bar) as Creature;
-        if (creature?.Player == null)
+        if (creature?.Player == null || creature.CombatState == null)
         {
             label.Visible = false;
             return;
@@ -164,7 +165,7 @@ public static class SummedIncomingDamageRender
     {
         // Collect incoming damage from all hittable monsters (can untargetable monsters attack?).
         var incomingDamage = 0;
-        foreach (var hittableEnemy in creature.CombatState.HittableEnemies)
+        foreach (var hittableEnemy in creature.CombatState!.HittableEnemies)
         {
             foreach (var intent in hittableEnemy.Monster.NextMove.Intents)
             {
@@ -174,7 +175,7 @@ public static class SummedIncomingDamageRender
         }
 
         // Knowledge demon end of turn damage
-        incomingDamage += creature.Player.Creature.GetPower<DisintegrationPower>()?.Amount ?? 0;
+        incomingDamage += creature.Player!.Creature.GetPower<DisintegrationPower>()?.Amount ?? 0;
 
         return incomingDamage;
     }
