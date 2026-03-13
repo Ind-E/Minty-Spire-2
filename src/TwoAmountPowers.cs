@@ -20,6 +20,9 @@ using MintySpire2.util;
 
 namespace MintySpire2;
 
+/**
+ * Credits to kiooeht, this displays a second amount for powers that require tracking multiple values.
+ */
 [HarmonyPatch(typeof(NPower))]
 static class TwoAmountPowers
 {
