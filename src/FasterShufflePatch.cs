@@ -29,7 +29,22 @@ public class FasterShufflePatch
             return normalTime *  GetMultiplier();
         }
         
-        [HarmonyTranspiler]
+        private static bool didPatch = false;
+
+        static bool Prepare(MethodBase original)
+        {
+            if (original == null)
+            {
+                return true;
+            }
+            if (didPatch)
+            {
+                return false;
+            }
+            didPatch = true;
+            return true;
+        }
+        
         static IEnumerable<CodeInstruction> Transpiler(IEnumerable<CodeInstruction> instructions)
         {
             var codeMatcher = new CodeMatcher(instructions);
